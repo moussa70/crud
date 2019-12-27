@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class= "container mt-4">
+ <table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Libelle Specialite</th>
+             <td>Libelle Service</td>
+            
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for specialite in specialites %}
+        <tr>
+            <td scope="row">{{specialite.Id}}</td>
+            <td>{{specialite.Libelle}}</td>
+            <td>{{specialite.Service.Libelle}}</td>
+             <td>
+                <a href="{{ path('specialite.specialite.edit',{Id: specialite.Id}) }}" class="btn btn-secondary">Modifier</a>
+                <a href="{{ path('specialite.specialite.delete',{Id: specialite.Id})}}" {onsubmit="return confirm('Êtes vous vraiment sûr ?')" class="btn btn-danger">supprimer</a>
+                </td>
+            
+        </tr>
+         {% endfor %}
+    </tbody>
+</table>
+<div class="text-right">
+<a href="{{ path('specialite.specialite.add') }}" class="btn btn-primary">Ajouter un specialité</a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class= "container mt-4">
+<h1>ajouter</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Matricule</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Date De Naissance</th>
+            <th>service</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    {% for medecin in medecins %}
+        <tr>
+            <td scope="row">{{medecin.Id}}</td>
+            <td>{{medecin.Matricule}}</td>
+            <td>{{medecin.Prenom}}</td>
+            <td>{{medecin.Nom}}</td>
+            <td>{{medecin.Telephone}}</td>
+            <td>{{medecin.DateDeNaissance|date('Y-m-d')}}</td>
+            <td>{{medecin.Services.Libelle}}</td>
+            
+            <td>
+                <a href="{{ path('medecin.medecin.edit',{Id: medecin.Id}) }}" class="btn btn-secondary">Modifier</a>
+                <a href="{{ path('medecin.medecin.delete',{Id: medecin.Id})}}" style="display:
+                inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')" class="btn btn-danger">supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="text-right">
+<a href="{{ path('medecin.medecin.add') }}" class="btn btn-primary">Ajouter un Medecin</a>
+</div>
+</div>
+{% endblock %}
